@@ -28,10 +28,9 @@ public class HНеСмешитеМоиПодковы {
         Arrays.sort(colors);
 
         int count = 0;
-        for (int i = 1; i < 4; i++) {
-            if (colors[i] == colors[i - 1]) {
+        for (int i = 0; i < 3; i++) {
+            if (colors[i] == colors[i + 1]) {
                 count++;
-                colors[i] = colors[i] + 1;
             }
         }
 
