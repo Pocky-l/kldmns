@@ -25,7 +25,7 @@ public class EПодсчётФункции {
         if (n % 2 == 0) {
             result = n / 2;
         } else {
-            result = -(n / 2 + 1);
+            result = n / 2 - n;
         }
 
         System.out.println(result);
