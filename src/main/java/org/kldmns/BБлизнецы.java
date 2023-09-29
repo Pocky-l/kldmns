@@ -34,12 +34,9 @@ public class BБлизнецы {
         for (int i = n - 1; i >= 0; i--) {
             sum += coins[i];
             count++;
-
             int remainingSum = 0;
-            for (int j = 0; j < n; j++) {
-                if (j != i) {
-                    remainingSum += coins[j];
-                }
+            for (int j = 0; j < i; j++) {
+                remainingSum += coins[j];
             }
 
             if (sum > remainingSum) {
@@ -47,7 +44,5 @@ public class BБлизнецы {
                 return;
             }
         }
-
-        System.out.println(n);
     }
 }
