@@ -1,4 +1,4 @@
-package org.kldmns;
+package org.kldmns.first;
 
 import java.util.Arrays;
 import java.util.Scanner;
