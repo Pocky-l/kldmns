@@ -81,17 +81,17 @@ public class Recursion {
 
     private static int binarySearch(int[] arr, int target, int left, int right) {
         if (left > right) {
-            return -1; // Элемент не найден
+            return -1; 
         }
 
         int mid = (left + right) / 2;
 
         if (arr[mid] == target) {
-            return mid; // Элемент найден
+            return mid;
         } else if (arr[mid] < target) {
-            return binarySearch(arr, target, mid + 1, right); // Искать в правой половине
+            return binarySearch(arr, target, mid + 1, right); 
         } else {
-            return binarySearch(arr, target, left, mid - 1); // Искать в левой половине
+            return binarySearch(arr, target, left, mid - 1); 
         }
     }
 }
