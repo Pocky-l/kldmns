@@ -7,7 +7,7 @@ public class C {
         Scanner scanner = new Scanner(System.in);
         int t = scanner.nextInt();
 
-        while (t-- > 0) {
+        for (int i = 0; i < t; i++) {
             int x = scanner.nextInt();
             int digit = x % 10;
             int sum = (digit - 1) * 10;
