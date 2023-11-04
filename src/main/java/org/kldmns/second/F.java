@@ -8,18 +8,14 @@ public class F {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Считываем имена гостя и хозяина
         String guestName = scanner.nextLine();
         String hostName = scanner.nextLine();
 
-        // Считываем буквы в кучке
         String letters = scanner.nextLine();
 
-        // Создаем мапы для хранения количества букв в именах
         Map<Character, Integer> guestMap = new HashMap<>();
         Map<Character, Integer> hostMap = new HashMap<>();
 
-        // Заполняем мапы для имен гостя и хозяина
         for (char c : guestName.toCharArray()) {
             guestMap.put(c, guestMap.getOrDefault(c, 0) + 1);
         }
@@ -28,7 +24,6 @@ public class F {
             hostMap.put(c, hostMap.getOrDefault(c, 0) + 1);
         }
 
-        // Проверяем, можно ли из букв в кучке составить имена
         boolean canArrangeNames = true;
 
         for (char c : letters.toCharArray()) {
@@ -43,18 +38,15 @@ public class F {
                     hostMap.remove(c);
                 }
             } else {
-                // Если буква не принадлежит ни гостю, ни хозяину, то нельзя составить имена
                 canArrangeNames = false;
                 break;
             }
         }
 
-        // Проверяем, что в мапах не остались лишние буквы
         if (!guestMap.isEmpty() || !hostMap.isEmpty()) {
             canArrangeNames = false;
         }
 
-        // Выводим результат
         if (canArrangeNames) {
             System.out.println("YES");
         } else {
