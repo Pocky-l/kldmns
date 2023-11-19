@@ -14,6 +14,7 @@ public class BFS {
         Queue<Vertex> queue = new LinkedList<>();
         queue.add(start);
 
+        System.out.println("BFS: ");
         while (!queue.isEmpty()){
             Vertex curr = queue.poll();
             for (Vertex v : curr.getNeighbours()){
@@ -21,7 +22,7 @@ public class BFS {
                     queue.add(v);
             }
             curr.setVisited(true);
-            System.out.println(curr.getName());
+            System.out.print(curr.getName() + " ");
         }
     }
 }

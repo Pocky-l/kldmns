@@ -22,10 +22,16 @@ public class App {
 
         G.addNeighbour(H);
 
-        //   BFS bfs = new BFS(A);
-        //  bfs.bfs();
+        //BFS bfs = new BFS(A);
+        //bfs.bfs();
+
 
         DFS dfs = new DFS(A);
         dfs.dfs();
+
+        Tsort sort = new Tsort();
+        sort.topologicalSort(A);
+
+
     }
 }

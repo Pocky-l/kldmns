@@ -13,6 +13,7 @@ public class DFS {
         Stack<Vertex> stack = new Stack<>();
         stack.push(start);
 
+        System.out.println("DFS: ");
         while (!stack.isEmpty()){
             Vertex curr = stack.pop();
 
@@ -21,7 +22,7 @@ public class DFS {
                     stack.push(v);
 
             curr.setVisited(true);
-            System.out.println(curr.getName());
+            System.out.println(curr.getName() + " ");
         }
     }
 }
