@@ -15,23 +15,14 @@ public class FordBellman {
     }
 
     private static Graph createGraph() {
-        Graph graph = new Graph(8);
-        graph.addEdge(0, 1, 5);
-        graph.addEdge(0, 4, 9);
-        graph.addEdge(0, 7, 8);
-        graph.addEdge(1, 2, 12);
-        graph.addEdge(1, 3, 15);
-        graph.addEdge(1, 7, 4);
-        graph.addEdge(2, 3, 3);
-        graph.addEdge(2, 6, 11);
-        graph.addEdge(3, 6, 9);
-        graph.addEdge(4, 5, 4);
-        graph.addEdge(4, 6, 20);
-        graph.addEdge(4, 7, 5);
-        graph.addEdge(5, 2, 1);
-        graph.addEdge(5, 6, 13);
-        graph.addEdge(7, 2, 7);
-        graph.addEdge(7, 5, 6);
+        Graph graph = new Graph(5);
+        graph.addEdge(0, 1, 10);
+        graph.addEdge(0, 3, 30);
+        graph.addEdge(0, 4, 100);
+        graph.addEdge(1, 2, 50);
+        graph.addEdge(2, 4, 10);
+        graph.addEdge(3, 4, 60);
+        graph.addEdge(3, 2, 20);
         return graph;
     }
 
