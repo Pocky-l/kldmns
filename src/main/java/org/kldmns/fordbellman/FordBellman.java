@@ -1,4 +1,5 @@
 package org.kldmns.fordbellman;
+
 public class FordBellman
 {
     public static void main(String args[])
@@ -19,20 +20,23 @@ public class FordBellman
     }
     private static Graph createGraph()
     {
-        int v = 7;
-//creating a graph having 7 vertices
+        int v = 9;
+//creating a graph having 7 s
         Graph g = new Graph(v);
 //adding edges to the graph
-        g.addEdge(1, 2, 4);
-        g.addEdge(1, 4, 9);
-        g.addEdge(2, 3, -1);
-        g.addEdge(3, 6, 3);
-        g.addEdge(4, 3, 2);
-        g.addEdge(4, 5, -5);
-        g.addEdge(5, 6, 0);
-
+        g.addEdge(1, 2, 5);
+        g.addEdge(2, 6, 2);
+        g.addEdge(2, 4, -3);
+        g.addEdge(4, 3, 7);
+        g.addEdge(4, 9, -3);
+        g.addEdge(9, 5, 1);
+        g.addEdge(3, 7, -5);
+        g.addEdge(7, 8, 2);
+        g.addEdge(8, 3, 4);
+//returns graph
         return g;
     }
+    //Bellman-Ford logic
     public static boolean getShortestPaths(Graph g, int source, int[] distance)
     {
         int V = g.getV();
@@ -50,7 +54,13 @@ public class FordBellman
             for(Edge e: g.getEdges())
             {
                 int u = e.getU(), v = e.getV(), w = e.getW();
-                if(distance[u] != Integer.MAX_VALUE && distance[v] > distance[u] + w)
+                System.out.println(u);
+                System.out.println(w);
+                System.out.println(v);
+                System.out.println(" ");
+                System.out.println(distance.length);
+                if(distance.length < u && distance.length < v) return false;
+                if(distance[u - 1] != Integer.MAX_VALUE && distance[v - 1] > distance[u] + w)
                 {
 //calculates distance
                     distance[v] = distance[u] + w;

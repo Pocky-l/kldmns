@@ -8,6 +8,7 @@ class Edge
     private int v;
     //it denotes the weight on edge
     private int w;
+    //generating getters and setters
     public int getU()
     {
         return u;
@@ -32,6 +33,7 @@ class Edge
     {
         this.w = w;
     }
+    //creating constructor of the Edge class
     public Edge(int u, int v, int w)
     {
         this.u = u;
