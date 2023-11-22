@@ -1,81 +1,89 @@
 package org.kldmns.fordbellman;
 
-public class FordBellman
-{
-    public static void main(String args[])
-    {
-        Graph g = createGraph();
-        int distance[] = new int[g.getV()];
-        boolean hasNegativeCycle = getShortestPaths(g, 1, distance);
-        if(!hasNegativeCycle)
-        {
-            System.out.println("Vertex \t: Distance");
-            for(int i = 1; i < distance.length; i++)
-                System.out.println("\t"+i + " " + "\t\t"+(distance[i] == Integer.MAX_VALUE ? "-" : distance[i]));
-        }
-        else
-        {
-            System.out.println("Negative cycle exists in the graph, no solution found!!!");
+import java.util.Arrays;
+import java.util.List;
+
+public class FordBellman {
+
+    public static void main(String[] args) {
+        Graph graph = createGraph();
+        int source = 0;
+        int[] distances = bellmanFord(graph, source);
+
+        System.out.println("Shortest distances from source " + source + ":");
+        printDistances(distances);
+    }
+
+    private static Graph createGraph() {
+        Graph graph = new Graph(8);
+        graph.addEdge(0, 1, 5);
+        graph.addEdge(0, 4, 9);
+        graph.addEdge(0, 7, 8);
+        graph.addEdge(1, 2, 12);
+        graph.addEdge(1, 3, 15);
+        graph.addEdge(1, 7, 4);
+        graph.addEdge(2, 3, 3);
+        graph.addEdge(2, 6, 11);
+        graph.addEdge(3, 6, 9);
+        graph.addEdge(4, 5, 4);
+        graph.addEdge(4, 6, 20);
+        graph.addEdge(4, 7, 5);
+        graph.addEdge(5, 2, 1);
+        graph.addEdge(5, 6, 13);
+        graph.addEdge(7, 2, 7);
+        graph.addEdge(7, 5, 6);
+        return graph;
+    }
+
+    private static void printDistances(int[] distances) {
+        for (int i = 0; i < distances.length; i++) {
+            System.out.println("To " + i + ": " + distances[i]);
         }
     }
-    private static Graph createGraph()
-    {
-        int v = 9;
-//creating a graph having 7 s
-        Graph g = new Graph(v);
-//adding edges to the graph
-        g.addEdge(1, 2, 5);
-        g.addEdge(2, 6, 2);
-        g.addEdge(2, 4, -3);
-        g.addEdge(4, 3, 7);
-        g.addEdge(4, 9, -3);
-        g.addEdge(9, 5, 1);
-        g.addEdge(3, 7, -5);
-        g.addEdge(7, 8, 2);
-        g.addEdge(8, 3, 4);
-//returns graph
-        return g;
+
+    public static int[] bellmanFord(Graph graph, int source) {
+        int V = graph.getV();
+        int[] distances = initializeDistances(V, source);
+
+        List<Edge> edges = graph.getEdges();
+
+        relaxEdges(V, distances, edges);
+
+        checkNegativeCycles(distances, edges);
+
+        return distances;
     }
-    //Bellman-Ford logic
-    public static boolean getShortestPaths(Graph g, int source, int[] distance)
-    {
-        int V = g.getV();
-//initializing distances from source to other vertices
-        for(int i = 1; i < V; i++)
-        {
-            distance[i] = Integer.MAX_VALUE;
-        }
-//source vertex initialize to 0
-        distance[source] = 0;
-//relaxing edges
-        for(int i = 1; i < V; i++)
-        {
-//iterate over edges
-            for(Edge e: g.getEdges())
-            {
-                int u = e.getU(), v = e.getV(), w = e.getW();
-                System.out.println(u);
-                System.out.println(w);
-                System.out.println(v);
-                System.out.println(" ");
-                System.out.println(distance.length);
-                if(distance.length < u && distance.length < v) return false;
-                if(distance[u - 1] != Integer.MAX_VALUE && distance[v - 1] > distance[u] + w)
-                {
-//calculates distance
-                    distance[v] = distance[u] + w;
+
+    private static int[] initializeDistances(int V, int source) {
+        int[] distances = new int[V];
+        Arrays.fill(distances, Integer.MAX_VALUE);
+        distances[source] = 0;
+        return distances;
+    }
+
+    private static void relaxEdges(int V, int[] distances, List<Edge> edges) {
+        for (int i = 1; i < V; i++) {
+            for (Edge edge : edges) {
+                int u = edge.getU();
+                int v = edge.getV();
+                int weight = edge.getW();
+
+                if (distances[u] != Integer.MAX_VALUE && distances[u] + weight < distances[v]) {
+                    distances[v] = distances[u] + weight;
                 }
             }
         }
-//checks if there exist negative cycles in graph G
-        for(Edge e: g.getEdges())
-        {
-            int u = e.getU(), v = e.getV(), w = e.getW();
-            if(distance[u] != Integer.MAX_VALUE && distance[v] > distance[u] + w)
-            {
-                return true;
+    }
+
+    private static void checkNegativeCycles(int[] distances, List<Edge> edges) {
+        for (Edge edge : edges) {
+            int u = edge.getU();
+            int v = edge.getV();
+            int weight = edge.getW();
+
+            if (distances[u] != Integer.MAX_VALUE && distances[u] + weight < distances[v]) {
+                System.out.println("Graph contains negative weight cycle");
             }
         }
-        return false;
     }
 }

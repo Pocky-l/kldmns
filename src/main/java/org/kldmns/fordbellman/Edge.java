@@ -2,13 +2,17 @@ package org.kldmns.fordbellman;
 
 class Edge
 {
-    //it is the source vertex
     private int u;
-    //it is the destination vertex
     private int v;
-    //it denotes the weight on edge
     private int w;
-    //generating getters and setters
+
+    public Edge(int u, int v, int w)
+    {
+        this.u = u;
+        this.v = v;
+        this.w = w;
+    }
+
     public int getU()
     {
         return u;
@@ -33,11 +37,5 @@ class Edge
     {
         this.w = w;
     }
-    //creating constructor of the Edge class
-    public Edge(int u, int v, int w)
-    {
-        this.u = u;
-        this.v = v;
-        this.w = w;
-    }
+
 }

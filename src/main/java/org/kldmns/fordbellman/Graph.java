@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 class Graph
 {
-    //vertices of the graph
     private int V;
-    //edges in the graph
     private List<Edge> edges;
-    //creating a constructor of the Graph class and generating getters and setters
     public Graph(int v)
     {
         V = v;
